@@ -11,7 +11,8 @@
 
 (defun docstrings (sym)
   (strcat (mapcar (lambda (o) (mkstr o #\Newline))
-                  (remove-if-not #'identity (list (documentation sym 'function)
+                  (remove-if-not #'identity (list (documentation sym 'variable)
+                                                  (documentation sym 'function)
                                                   (documentation sym 'setf))))))
 (defun select-docs (sym) (declare (symbol sym))
   (let* ((docs (find-if (lambda (c) (eq sym c)) *docstring-map* :key #'car))

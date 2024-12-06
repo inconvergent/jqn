@@ -1,4 +1,3 @@
-#!/usr/local/bin/sbcl --script
 
 (load "~/quicklisp/setup.lisp")
 

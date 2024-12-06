@@ -70,10 +70,17 @@
 (defun ldnout (o) "serialize internal representation to readable lisp data.
 most notably lists and vectors are serialized as #(..), and hash-tables are serialized
 as alists. see ldnload."
+  ; TODO: there is/was a recursion stack overflow here for large lists (in
+  ; particular) and when flattening hash-tables can we do this in a smarter
+  ; way?
   (labels ((ldnkey (k) (typecase k (number k) (string (kw k)) (sequence k)
                                    (character k) (otherwise (kw k)))))
    (typecase o (string o)
-     (cons (cons (ldnout (car o)) (ldnout (cdr o))))
+                 ; simplistic alist test
+     (cons (cond ((consp (cdr o)) (map 'list (lambda (k) (ldnout k)) o))
+                 ; map appears to behave better than loop+collect and (cons car cdr)?
+                 (t (cons (ldnout (car o)) (ldnout (cdr o))))))
+     ; (cons (cons (ldnout (car o)) (ldnout (cdr o))))
      (hash-table (loop for k being the hash-keys of o using (hash-value v)
                        collect `(,(ldnkey k) . ,(ldnout v))))
      (vector (loop with res = (make-adjustable-vector)

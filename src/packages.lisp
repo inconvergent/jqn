@@ -11,7 +11,7 @@
     #:flatn* #:compct #:flatall* #:flatn$ #:uniq
     #:noop #:kv? #:kw? #:ssym? #:msym? #:trim #:sym! #:kw! #:extsym?
     #:num!? #:num? #:flt! #:flt!? #:flt? #:int! #:int!? #:int?
-    #:lst? #:lst! #:lst!? #:seq? #:seq!? #:str! #:str? #:str!? #:vec! #:vec? #:vec!?
+    #:lst #:lst? #:lst! #:lst!? #:seq? #:seq!? #:str! #:str? #:str!? #:vec! #:vec? #:vec!?
     #:ind* #:sel #:seq
     #:sup #:sdwn #:strcat #:repl #:splt #:symb #:join
     #:pref? #:suf? #:sub? #:subx? #:ipref? #:isuf? #:isub? #:isubx?

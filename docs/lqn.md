@@ -1,4 +1,4 @@
-# Lisp Query Notation Symbol Documentation (2.1.1)
+# Lisp Query Notation Symbol Documentation (2.1.2)
 
 ```
  ; LQN:??
@@ -636,6 +636,17 @@
  ;   Documentation:
  ;     list dir contents at this pattern.
  ;   Source file: /data/x/lqn/src/sh.lisp
+```
+```
+:missing:
+
+ ; LQN:LST
+ ;   [symbol]
+ ; 
+ ; LST names a compiled function:
+ ;   Lambda-list: (&REST REST)
+ ;   Derived type: (FUNCTION * (VALUES LIST &OPTIONAL))
+ ;   Source file: /data/x/lqn/src/basic-utils.lisp
 ```
 ```
  ; LQN:LST!

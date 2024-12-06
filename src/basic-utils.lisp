@@ -31,13 +31,14 @@
 (defun psymb (&optional (pkg 'lqn) &rest args) ;https://gist.github.com/lispm/6ed292af4118077b140df5d1012ca646
   "mkstr, make symbol in pkg."
   (values (intern (sup (apply #'mkstr args)) pkg)))
-(defun lst (&rest rest) (apply #'list rest))
+(defun lst (&rest rest) (apply #'list rest)) ; TODO: this collides with eg. veq:lst. check packages when overriding with internal symbol?
 
 (defmacro car- (fx d) (declare (symbol d)) `(and (listp ,d) (,fx (car ,d))))
 (defun sym-mode? (d &aux (mode-sym (unpack-mode d nil)))
   (if mode-sym (values-list (unpack-mode mode-sym d :?)) (values nil d)))
 (defun qop? (s d &aux (d (and (listp d) (car d)))) (and d (ssym? d) (eq s (kw d))))
 (defun dat?    (d) (and (symbolp d)    (eq (kw d) :_)))
+; TODO: make this test better to avoid eg. veq:lst collision
 (defun lqnfx?  (d) (and (ssym? d) (member (kw d) *fxns* :test #'eq)))
 (defun custom-modifier? (m d)
   (and (symbolp d) (pref? (symbol-name d) m)

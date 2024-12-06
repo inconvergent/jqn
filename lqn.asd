@@ -1,6 +1,6 @@
 (asdf:defsystem #:lqn
   :description "Lisp Query Notation"
-  :version "2.1.1"
+  :version "2.1.2"
   :author "anders hoff / @inconvergent / inconvergent@gmail.com"
   :in-order-to ((asdf:test-op (asdf:test-op #:lqn/tests)))
   :licence "MIT" :pathname "src/" :serial nil
@@ -19,7 +19,7 @@
 
 (asdf:defsystem #:lqn/tests
   :depends-on (#:lqn #:prove #:uiop #:asdf)
-  :version "2.1.1"
+  :version "2.1.2"
   :perform (asdf:test-op (o s) (uiop:symbol-call ':lqn-tests '#:run-tests))
   :pathname "test/" :serial t
   :components ((:file "run")))

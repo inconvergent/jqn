@@ -5,7 +5,7 @@
                       :?xpr :?txpr :?mxpr
                       :?fld :?srch :?grp :?rec))
 (defvar *opt* '(optimize (speed 3) (safety 1)))
-(defvar *fxns* '(:err :wrn :nope :noop :lst :lit :qt :hld :ghv :pnum :inum :cnt :λ
+(defvar *fxns* '(:err :wrn :nope :noop :lit :qt :hld :ghv :pnum :inum :cnt :λ
                  :fmt :out :jsnstr
                  :fn :fi :ctx  :par :itr :key :val :compct :?? :@get :@*
                  :read? :some? :all? :none? :smth? :size?
@@ -17,7 +17,7 @@
                  :lpad :rpad :nstr :sup :sdwn :mkstr :repl :strcat :splt :join
                  :msym? :is? :kv? kw? :sym? :ssym? :sym! :trim
                  :num!? :num? :flt! :flt!? :flt? :int! :int!? :int?
-                 :lst? :lst! :lst!? :seq? :seq!? :str! :str? :str!? :vec! :vec? :vec!?
+                 :lst? :lst! :lst!? :seq? :seq!? :str! :str? :str!? :kw! :vec! :vec? :vec!?
                  :path? :subdir :subfiles :ls :dir? :file? :cwd :now :cmd :cd))
 (defun cmd-args ()
   (or #+SBCL sb-ext:*posix-argv* #+LISPWORKS system:*line-arguments-list*
@@ -42,7 +42,8 @@
 (defmacro with-gensyms (syms &body body)
   `(let ,(mapcar #'(lambda (s) `(,s (gensym ,(symbol-name s)))) syms) ,@body))
 
-(defmacro abbrev (short long) `(defmacro ,short (&rest args) `(,',long ,@args)))
+(defmacro abbrev (short long)
+  `(defmacro ,short (&rest args) ,(format nil "alias: ~s~&" long) `(,',long ,@args)))
 (abbrev awg with-gensyms)        (abbrev mav make-adjustable-vector)
 (abbrev dsb destructuring-bind)  (abbrev mvb multiple-value-bind)
 (abbrev mvc multiple-value-call) (abbrev mvl multiple-value-list)

@@ -18,7 +18,7 @@ make something that requres a relatively simple compiler.
 Here is a small tutorial: https://inconvergent.net/2024/lisp-query-notation/.
 
 An expanded version of the tutorial can be seen in this paper:
-https://zenodo.org/records/11001584
+https://inconvergent.net/code/lqn.pdf
 
 When using `LQN` on the terminal there are three terminal commands, or input
 modes: `jqn`, `tqn` and `lqn`. For `JSON`, text and lisp data respectively.

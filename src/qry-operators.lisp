@@ -296,7 +296,8 @@
     (when db (qry/show q cq))
     `(funcall ,cq ,dat ":qry:" 0)))
 (defmacro qry (dat &rest rest) "query data. rest is wrapped in the ?pipe operator."
-  `(qryd ,dat (?pipe ,@rest)))
+  `(locally (declare #+SBCL(sb-ext:muffle-conditions sb-ext:compiler-note))
+            (qryd ,dat (?pipe ,@rest))))
 
 ; TODO: fix arguments/names in qryd, jsnqryf etc.
 (defmacro qrydb (dat &rest rest) "query data. rest is wrapped in the ?pipe operator."
